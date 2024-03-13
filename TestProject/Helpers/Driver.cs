@@ -22,19 +22,24 @@ public class Driver
         switch (appSettings.Browser)
         {
             case "Chrome":
-                webDriver = ChromeBrowser();
+                webDriver = ChromeBrowser(appSettings.Options);
                 break;
             default:
-                webDriver = ChromeBrowser();
+                webDriver = ChromeBrowser(appSettings.Options);
                 break;
         }
 
         return webDriver;
     }
 
-    private static ChromeDriver ChromeBrowser()
+    private static ChromeDriver ChromeBrowser(Options options)
     {
-        return new ChromeDriver();
+        var chromeOptions = new ChromeOptions();
+        if (options.Headless)
+        {
+            chromeOptions.AddArgument("--headless=new");
+        }
+        return new ChromeDriver(chromeOptions);
     }
 
     public void EndSession()

@@ -8,11 +8,11 @@ public static class Settings
     {
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", false, false)
+            .AddJsonFile("appsettings.json", true, true)
             .Build();
 
         var appSettings = new AppSettings();
-        configuration.Bind(appSettings, x => x.BindNonPublicProperties = true);
+        configuration.GetSection("AppSettings").Bind(appSettings);
 
         return appSettings;
     }
