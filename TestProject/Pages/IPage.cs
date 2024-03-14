@@ -8,5 +8,5 @@ namespace TestProject.Pages;
 
 public interface IPage
 {
-
+    public string Path { get; }
 }

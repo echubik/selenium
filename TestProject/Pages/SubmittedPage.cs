@@ -2,8 +2,15 @@
 
 namespace TestProject.Pages;
 
-public class SubmittedPage
+public class SubmittedPage : IPage
 {
+    private readonly string _path = "/selenium/web/submitted-form.html";
+
+    public string Path
+    {
+        get { return _path; }
+    }
+
     private IWebDriver _driver;
 
     public SubmittedPage(IWebDriver driver)

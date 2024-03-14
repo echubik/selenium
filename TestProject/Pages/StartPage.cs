@@ -2,8 +2,15 @@
 
 namespace TestProject.Pages;
 
-public class StartPage
+public class StartPage : IPage
 {
+    private readonly string _path = "/selenium/web/web-form.html";
+
+    public string Path
+    {
+        get { return _path; }
+    }
+
     private IWebDriver _driver;
 
     public StartPage(IWebDriver driver)

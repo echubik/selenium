@@ -17,7 +17,7 @@ public class SeleniumTests : TestBase
         _driver = new Driver(_appSettings);
         _startPage = new StartPage(_driver.WebDriver);
 
-        _driver.WebDriver.Navigate().GoToUrl("https://www.selenium.dev/selenium/web/web-form.html");
+        _driver.WebDriver.Navigate().GoToUrl(_appSettings.Domain + _startPage.Path);
         _driver.WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
     }
 
