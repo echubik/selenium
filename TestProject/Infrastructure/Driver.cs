@@ -2,13 +2,13 @@
 using OpenQA.Selenium.Chrome;
 using TestProject.Settings;
 
-namespace TestProject.Helpers;
+namespace TestProject.Infrastructure;
 
 public class Driver
 {
     private readonly IWebDriver _webDriver;
 
-    public IWebDriver WebDriver { get { return _webDriver; } }
+    public IWebDriver WebDriver => _webDriver;
 
     public Driver(AppSettings appSettings)
     {
@@ -17,25 +17,17 @@ public class Driver
 
     public IWebDriver StartSession(AppSettings appSettings)
     {
-        IWebDriver webDriver;
-
-        switch (appSettings.Browser)
+        return appSettings.Browser switch
         {
-            case "Chrome":
-                webDriver = ChromeBrowser(appSettings.Options);
-                break;
-            default:
-                webDriver = ChromeBrowser(appSettings.Options);
-                break;
-        }
-
-        return webDriver;
+            "Chrome" => ChromeBrowser(appSettings.BrowserOptions),
+            _ => ChromeBrowser(appSettings.BrowserOptions),
+        };
     }
 
-    private static ChromeDriver ChromeBrowser(Options options)
+    private static ChromeDriver ChromeBrowser(BrowserOptions browserOptions)
     {
         var chromeOptions = new ChromeOptions();
-        if (options.Headless)
+        if (browserOptions.Headless)
         {
             chromeOptions.AddArgument("--headless=new");
         }

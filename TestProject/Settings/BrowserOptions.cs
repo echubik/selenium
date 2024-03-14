@@ -1,6 +1,6 @@
 ﻿namespace TestProject.Settings;
 
-public class Options
+public class BrowserOptions
 {
     public bool Headless { get; set; }
 }

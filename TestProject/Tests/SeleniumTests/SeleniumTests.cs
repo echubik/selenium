@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using TestProject.Helpers;
+using OpenQA.Selenium.Interactions;
+using TestProject.Infrastructure;
 using TestProject.Pages;
 
 namespace TestProject.Tests.SeleniumTests;
 
 [TestFixture]
-public class SeleniumTests : TestBase 
+public class SeleniumTests : TestBase
 {
     private Driver _driver;
     private StartPage _startPage;
@@ -28,11 +28,31 @@ public class SeleniumTests : TestBase
     }
 
     [Test]
-    public void Test()
+    public void ClickSubmitTest()
     {
         var newPage = _startPage.ClickButton();
         var message = newPage.GetMessage();
 
         Assert.That(message, Is.EqualTo("Received!"));
     }
+
+    [TestCase("example")]
+    public void SetTextTest(string text)
+    {
+        _startPage.SetMyText(text);
+
+        Assert.That(text, Is.EqualTo(_startPage.GetMyText()));
+    }
+
+    [Test]
+    public void SetTextByActionTest()
+    {
+        var action = new Actions(_driver.WebDriver);
+        action.KeyDown(Keys.Shift)
+              .SendKeys(_startPage.FindMyText(), "a")
+              .Perform();
+
+        Assert.That("A", Is.EqualTo(_startPage.GetMyText()));
+    }
+
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestProject.Pages;
+﻿namespace TestProject.Pages;
 
 public interface IPage
 {
+    /// <summary>
+    /// String of characters used to uniquely identify a location
+    /// </summary>
+    /// <example> /wiki/path.html </example>
     public string Path { get; }
 }

@@ -6,10 +6,7 @@ public class SubmittedPage : IPage
 {
     private readonly string _path = "/selenium/web/submitted-form.html";
 
-    public string Path
-    {
-        get { return _path; }
-    }
+    public string Path => _path;
 
     private IWebDriver _driver;
 
