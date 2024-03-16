@@ -26,16 +26,16 @@ public class StartPage : IPage
         return new SubmittedPage(_driver);
     }
 
+    public IWebElement MyText
+    {
+        get { return _driver.FindElement(_myText); }
+    }
     public void SetMyText(string text)
     {
-        _driver.FindElement(_myText).SendKeys(text);
+        MyText.SendKeys(text);
     }
     public string GetMyText()
     {
-        return _driver.FindElement(_myText).GetAttribute("value");
-    }
-    public IWebElement FindMyText()
-    {
-        return _driver.FindElement(_myText);
+        return MyText.GetAttribute("value");
     }
 }
